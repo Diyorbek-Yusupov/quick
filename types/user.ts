@@ -49,3 +49,13 @@ export interface SignInResponse {
   token_type: string;
   user: UserDetail;
 }
+
+export interface SocialLoginCredentials {
+  type: "google" | "facebook" | "apple";
+  data: {
+    name: string | null;
+    email: string | null;
+    id: string;
+    avatar: string | null;
+  };
+}

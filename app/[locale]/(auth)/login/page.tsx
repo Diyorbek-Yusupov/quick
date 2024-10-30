@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
 import { useIntl } from "react-intl";
 import * as z from "zod";
@@ -9,7 +8,6 @@ import { useMutation } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { setCookie } from "cookies-next";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Eye, EyeOff } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import {
@@ -25,6 +23,7 @@ import { SignInCredentials } from "@/types/user";
 
 import useUserStore from "@/global-store/user";
 import { useRouter } from "next/navigation";
+import SocialLogin from "@/app/[locale]/(auth)/components/social-login";
 
 const formSchema = z.object({
   username: z.string().min(3),
@@ -64,7 +63,7 @@ function Login() {
 
     signIn(body, {
       onSuccess: (res) => {
-        toast.success("successfully.logged.in");
+        toast.success(formatMessage({ id: "successfully.logged.in" }));
         setCookie(
           "token",
           `${res.data.data.token_type} ${res.data.data.access_token}`,
@@ -73,8 +72,6 @@ function Login() {
         router.replace("/");
       },
     });
-
-    console.log("body", body);
   }
 
   return (
@@ -127,6 +124,7 @@ function Login() {
           </Button>
         </form>
       </Form>
+      <SocialLogin />
     </>
   );
 }

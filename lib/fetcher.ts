@@ -1,7 +1,4 @@
-import xior, {
-  XiorInterceptorRequestConfig,
-  XiorResponseInterceptorConfig,
-} from "xior";
+import xior, { XiorInterceptorRequestConfig } from "xior";
 import { deleteCookie, getCookie } from "cookies-next";
 import { BASE_URL } from "@/config/global";
 import { userActionOutsideOfComponent } from "@/global-store/user";
@@ -20,8 +17,8 @@ fetcher.interceptors.request.use((config: XiorInterceptorRequestConfig) => {
 fetcher.interceptors.response.use(
   (result) => result,
   async (error) => {
-    const errorResponse = error.response?.data;
-    let errorMessage = errorResponse.message;
+    const errorResponse = error.response?.data ?? error;
+    let errorMessage = errorResponse?.message;
     if (errorResponse?.params) {
       errorMessage = Object.values(
         errorResponse.params as Record<string, string[]>,

@@ -9,6 +9,7 @@ import Header from "@/components/header";
 import { ThemeProvider } from "@/app/providers/theme-provider";
 import QueryProvider from "@/app/providers/query-provider";
 import { Toaster } from "@/components/ui/sonner";
+import TailwindIndicator from "@/components/tailwind-indicator";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -31,7 +32,7 @@ export default async function RootLayout({
   children,
   params: { locale },
 }: Readonly<RootLayoutProps>) {
-  const intl = await getIntl(locale);
+  // const intl = await getIntl(locale);
 
   const activeLanguages = await languageService
     .getActiveLanguages()
@@ -48,7 +49,8 @@ export default async function RootLayout({
       <body className={`${inter.className} antialiased bg-muted`}>
         <ServerIntlProvider
           locale={locale}
-          messages={intl.messages as Record<string, string>}
+          // messages={intl.messages as Record<string, string>}
+          messages={{} as Record<string, string>}
         >
           <ThemeProvider>
             <QueryProvider>
@@ -58,6 +60,7 @@ export default async function RootLayout({
               </div>
             </QueryProvider>
             <Toaster richColors />
+            <TailwindIndicator />
           </ThemeProvider>
         </ServerIntlProvider>
       </body>
