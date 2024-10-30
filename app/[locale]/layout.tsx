@@ -7,6 +7,8 @@ import { languageService } from "@/services/language";
 import { Dirs } from "@/types/global";
 import Header from "@/components/header";
 import { ThemeProvider } from "@/app/providers/theme-provider";
+import QueryProvider from "@/app/providers/query-provider";
+import { Toaster } from "@/components/ui/sonner";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -49,10 +51,13 @@ export default async function RootLayout({
           messages={intl.messages as Record<string, string>}
         >
           <ThemeProvider>
-            <div className="min-h-screen flex flex-col gap-y-5">
-              <Header />
-              {children}
-            </div>
+            <QueryProvider>
+              <div className="min-h-screen flex flex-col gap-y-5">
+                <Header />
+                {children}
+              </div>
+            </QueryProvider>
+            <Toaster richColors />
           </ThemeProvider>
         </ServerIntlProvider>
       </body>

@@ -16,6 +16,13 @@ export async function middleware(request: NextRequest) {
   return i18nRouter(request, await loadConfig());
 }
 
+// export async function middleware(request: NextRequest) {
+//   return i18nRouter(request, {
+//     locales: ["uz", "en"],
+//     defaultLocale: "en",
+//   });
+// }
+
 export const config = {
   matcher: "/((?!api|static|.*\\..*|_next).*)",
 };

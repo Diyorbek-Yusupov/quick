@@ -14,7 +14,14 @@ export default function ServerIntlProvider({
   children,
 }: ServerIntlProviderProps) {
   return (
-    <IntlProvider messages={messages} locale={locale}>
+    <IntlProvider
+      onError={(err) => {
+        if (err.code === "MISSING_TRANSLATION") return;
+        throw err;
+      }}
+      messages={messages}
+      locale={locale}
+    >
       {children}
     </IntlProvider>
   );

@@ -80,6 +80,10 @@ body {
 }
 
 @layer components {
+    .container-layout {
+        @apply container mx-auto;
+    }
+
     .container-box {
         @apply container mx-auto rounded-[10px] px-10 bg-background shadow-sm;
     }

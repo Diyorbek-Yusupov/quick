@@ -13,8 +13,10 @@ function Header() {
         <Logo />
       </Link>
       <nav className="flex items-center">
-        <Button variant="muted">
-          <LoginIcon /> {formatMessage({ id: "login" })}
+        <Button asChild variant="muted">
+          <Link href="/login">
+            <LoginIcon /> {formatMessage({ id: "login" })}
+          </Link>
         </Button>
       </nav>
     </header>
