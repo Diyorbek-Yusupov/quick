@@ -1,6 +1,11 @@
+import { useRouter } from "next/navigation";
 import firebaseApp from "@/lib/firebase";
+import useUserStore from "@/global-store/user";
+import {deleteCookie} from "cookies-next";
 
 export function useAuth() {
+  const router = useRouter();
+  const localSignOut = useUserStore((state) => state.signOut);
   const googleSignIn = async () => {
     const { signInWithPopup, GoogleAuthProvider, getAuth } = await import(
       "firebase/auth"
@@ -30,5 +35,14 @@ export function useAuth() {
     return signInWithPopup(auth, facebookAuthProvider);
   };
 
-  return { googleSignIn, appleSignIn, facebookSignIn };
+  const logout = async () => {
+    const { signOut, getAuth } = await import("firebase/auth");
+    const auth = getAuth(firebaseApp);
+    await signOut(auth);
+    localSignOut();
+    deleteCookie("token");
+    router.replace("/");
+  };
+
+  return { googleSignIn, appleSignIn, facebookSignIn, logout };
 }

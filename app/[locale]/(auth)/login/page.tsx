@@ -86,7 +86,9 @@ function Login() {
             name="username"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Username</FormLabel>
+                <FormLabel>
+                  {formatMessage({ id: "email.or.phone.number" })}
+                </FormLabel>
                 <FormControl>
                   <Input placeholder="Type here" {...field} />
                 </FormControl>
