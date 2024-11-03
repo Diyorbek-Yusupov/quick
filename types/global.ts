@@ -19,3 +19,9 @@ export enum Dirs {
   LTR = "ltr",
   RTL = "rtl",
 }
+
+export enum SignUpViews {
+  SIGNUP = "SIGNUP",
+  VERIFY = "VERIFY",
+  COMPLETE = "COMPLETE",
+}

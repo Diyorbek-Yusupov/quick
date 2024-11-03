@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useIntl } from "react-intl";
 import * as z from "zod";
@@ -20,9 +21,8 @@ import {
 } from "@/components/ui/form";
 import { authService } from "@/services/auth";
 import { SignInCredentials } from "@/types/user";
-
 import useUserStore from "@/global-store/user";
-import { useRouter } from "next/navigation";
+
 import SocialLogin from "@/app/[locale]/(auth)/components/social-login";
 
 const formSchema = z.object({

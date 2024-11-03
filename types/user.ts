@@ -50,6 +50,21 @@ export interface SignInResponse {
   user: UserDetail;
 }
 
+export interface SignUpVerifyResponse extends Omit<SignInResponse, "user"> {
+  token: string;
+  email: string;
+}
+
+export interface SignUpCredentials {
+  email?: string;
+  phone?: string;
+  password: string;
+  referral?: string;
+  password_confirmation?: string | null;
+  type?: string;
+  id?: string;
+}
+
 export interface SocialLoginCredentials {
   type: "google" | "facebook" | "apple";
   data: {
